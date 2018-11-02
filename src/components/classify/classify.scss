@@ -1,0 +1,176 @@
+.fenLeiLiuLan {
+    background-color: #fff;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    h1 {
+        position: relative;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 18px;
+        color: inherit;
+        &:before,
+        &:after {
+            content: '';
+            display: block;
+            width: 45%;
+            height: 0;
+            border-top: thin solid #ddd;
+            vertical-align: middle;
+            position: absolute;
+            top: 50%;
+        }
+        &:before {
+            left: 0;
+        }
+        &:after {
+            right: 0;
+        }
+      }
+    ._category {
+        margin-bottom: 20px;
+        display: block;
+        & > li {
+            float: left;
+            text-align: center;
+            width: 14.285714285714286%;
+            a {
+                display: inline-block;
+                vertical-align: middle;
+                zoom: 1;
+                *display: inline;
+                *vertical-align: auto;
+                height: 100%;
+                width: 100%;
+                color: inherit;
+            }
+            span {
+                display: inline-block;
+                vertical-align: middle;
+                zoom: 1;
+                *display: inline;
+                *vertical-align: auto;
+                width: 100%;
+                color: inherit;
+            }
+        }
+    }
+    ._user {
+        display: block;
+        li {
+            float: left;
+            width: 24%;
+            text-align: center;
+            strong {
+                display: inline-block;
+                vertical-align: middle;
+                zoom: 1;
+                *display: inline;
+                *vertical-align: auto;
+                width: 100%;
+                font-weight: bold;
+                color: #fff;
+                font-size: 24px;
+                line-height: 60px;
+                text-shadow: 0 2px 2px rgba(0,0,0,0.175);
+            }
+            span {
+                display: inline-block;
+                vertical-align: middle;
+                zoom: 1;
+                *display: inline;
+                *vertical-align: auto;
+                width: 80%;
+                height: 30px;
+                color: #fff;
+                background: rgba(0,0,0,0.175);
+                position: relative;
+                &:before,
+                &:after {
+                    content: '';
+                    display: block;
+                    width: 0;
+                    height: 0;
+                    border-top: 15px solid transparent;
+                    border-bottom: 15px solid transparent;
+                    position: absolute;
+                    top: 0;
+                }
+                &:before {
+                    border-left: 15px solid;
+                    left: 0;
+                }
+                &:after {
+                    border-right: 15px solid;
+                    right: 0;
+                }
+            }
+            & + li {
+                margin-left: 1.333333333333333%;
+            }
+        }
+        ._wdsg,
+        ._wddy,
+        ._wdwk,
+        ._stwk {
+          height: 130px;
+          padding: 10px;
+          -moz-box-sizing: border-box;
+          -webkit-box-sizing: border-box;
+          -o-box-sizing: border-box;
+          -ms-box-sizing: border-box;
+          box-sizing: border-box;
+        }
+        ._wdsg .I_30,
+        ._wddy .I_30,
+        ._wdwk .I_30,
+        ._stwk .I_30 {
+          width: 30px;
+          height: 30px;
+        }
+        ._wdsg {
+          background-color: #23c78f;
+          span {
+            &:before {
+              border-left-color: #23c78f;
+            }
+            &:after {
+              border-right-color: #23c78f;
+            }
+          }
+        }
+        ._wddy {
+          background-color: #ff8b2f;
+          span {
+            &:before {
+              border-left-color: #ff8b2f;
+            }
+            &:after {
+              border-right-color: #ff8b2f;
+            }
+          }
+        }
+        ._wdwk {
+          background-color: #3882ff;
+          span {
+            &:before {
+              border-left-color: #3882ff;
+            }
+            &:after {
+              border-right-color: #3882ff;
+            }
+          }
+        }
+        ._stwk {
+          background-color: #9132ff;
+          span {
+            &:before {
+              border-left-color: #9132ff;
+            }
+            &:after {
+              border-right-color: #9132ff;
+            }
+          }
+        }
+    }
+  }
