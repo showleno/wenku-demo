@@ -5,7 +5,8 @@ import './searchResult.scss';
 
 class SearchResult extends Component {
     componentDidMount () {
-        console.log(this.props.tpl)
+        console.log(this.props.data)
+        console.log(this.props.sortCategory)
     }
     render () {
         let noneContent = "<td colSpan=\"5\"><h1>抱歉，没有找到你要的内容！</h1></div></td>";
@@ -23,15 +24,20 @@ class SearchResult extends Component {
                                         </div>
                                         <div className="_body">
                                             
-                                            <a href="/" className="on">全部<em><font color="red">20</font>结果</em></a>
-                                            <a href="/">企业管理<em><font color="red">20</font>结果</em></a>
+                                            <a href="/" className="on">全部<em><font color="red">{this.props.data.length}</font>结果</em></a>
+                                            {
+                                                this.props.sortCategory.map((item,index)=>(
+                                                    <a href="/" key={index}>{item}<em><font color="red">20</font>结果</em></a>
+                                                ))
+                                            }
+                                            {/* <a href="/">企业管理<em><font color="red">20</font>结果</em></a>
                                             <a href="/">企业文化<em><font color="red">20</font>结果</em></a>
                                             <a href="/">法律<em><font color="red">20</font>结果</em></a>
                                             <a href="/">财会<em><font color="red">20</font>结果</em></a>
                                             <a href="/">国家政策<em><font color="red">20</font>结果</em></a>
                                             <a href="/">互联网<em><font color="red">20</font>结果</em></a>
                                             <a href="/">信息化<em><font color="red">20</font>结果</em></a>
-                                            <a href="/">汽车<em><font color="red">20</font>结果</em></a>
+                                            <a href="/">汽车<em><font color="red">20</font>结果</em></a> */}
                                 
                                         </div>
                                     </div>
@@ -52,7 +58,7 @@ class SearchResult extends Component {
                                                     <th>下载</th>
                                                 </tr>
                                             </thead>
-                                            {this.props.tpl === null ? <tr id="nocontent" dangerouslySetInnerHTML = {{ __html:  noneContent  }}></tr> : <SearchList tpl={this.props.tpl} /> }
+                                            {this.props.tpl === null ? <tr id="nocontent" dangerouslySetInnerHTML = {{ __html:  noneContent  }}></tr> : <SearchList data={this.props.data} /> }
                                         </table>
                                     </div>
                                 </div>

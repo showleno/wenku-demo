@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import SearchResult from './SearchResult';
-import axios from 'axios'
-import './Search.scss';
+import { getSearchResult } from '../../get_api';
 
 class Search extends Component {
     constructor (props) {
@@ -10,6 +9,7 @@ class Search extends Component {
             name : '',
             list: [],
             clearBtnIsShow: false,
+            sortCategory:[],
             // 请求节流
             throttle: false
         }
@@ -21,18 +21,22 @@ class Search extends Component {
         this.sendAjax(this.props.prop.location.state.name);
     }
     sendAjax = (query) => {
-        let url = 'https://www.easy-mock.com/mock/5bd69e55e4a7377be9531536/example/search';
-        let _this = this;
-        axios.get(url+'?name='+query)
-        .then( function(res) { 
-            console.log(res.data.data.list)
-            if ( res.data.data.list ) {
+        const data = getSearchResult(query);
+        const _this = this;
+
+        data.then(function(resout){
+            if ( resout ) {
                 _this.setState({
                     list: []
                 })
-                res.data.data.list.map((item,index) => (
+                let result = resout.list ;
+                result.map(function(item,index) {
                     _this.state.list.push(item)
-                ))
+                    if ( _this.state.sortCategory.indexOf(item.sortName) < 0 ) {
+                        _this.state.sortCategory.push(item.sortName)
+                    }
+                    return index
+                })
             }else {
                 _this.setState({
                     list: null
@@ -41,9 +45,6 @@ class Search extends Component {
             _this.setState({
                 throttle: false
             })
-        })
-        .catch(function (error) {
-            console.log(error);
         })
     }
     getList = () => {
@@ -87,7 +88,7 @@ class Search extends Component {
     render () {
         return (
             <div className="searchPage">
-                <div className="bottom">
+                <div className="subPageHeader">
                     <div className="container _clearfix">
                         
                         <div className="head _clearfix">
@@ -101,7 +102,7 @@ class Search extends Component {
                             <div className="search">
                                 <form action="">
                                     <div className="f-control">
-                                        <a href="javascript:void(0)" onClick={this.getList} className="search-btn"><i className="fa fa-search"></i></a>
+                                        <a href="javascript:;" onClick={this.getList} className="search-btn"><i className="fa fa-search"></i></a>
                                         <div className="search-ipt">
                                             <input type="text" placeholder="输入要搜索的关键字"  value={this.state.name} onChange={this.onChange} onKeyDown={this.handleKeyEnter} />
                                             <i className={this.state.clearBtnIsShow ? 'show fa fa-times-circle': 'hidden fa-times-circle'} onClick={this.clearInputText} ></i>
@@ -113,7 +114,7 @@ class Search extends Component {
                                 <a href="/" className="big-logo">
                                     <img src="../images/logo.png" alt="LOGO" />
                                 </a>
-                                <a href="/" className="sml-logo">
+                                <a href="/wk" className="sml-logo">
                                     文库
                                 </a>
                             </div>
@@ -122,7 +123,7 @@ class Search extends Component {
 
                     </div>
                 </div>
-                <SearchResult tpl={this.state.list} name={this.state.name} />
+                <SearchResult data={this.state.list} name={this.state.name} sortCategory={this.state.sortCategory}/>
             </div>
         )
     }
