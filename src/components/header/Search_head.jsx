@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import {  Link } from 'react-router-dom'
+import store from '../../redux/store/index';
 import './Search_head.scss';
 
 class Search_head extends Component {
     constructor (props) {
         super(props);
         this.state = {
-            name: ''
+            name: '',
+            isLogin : store.getState().reducer.isLogin
         }
     }
     goSearch = () =>  {
@@ -40,8 +41,10 @@ class Search_head extends Component {
                         
                         <div className="head _clearfix">
                             <div className="upload">
-                                <a href="/">
-                                    <input type="file" />
+                                <a href="/login">
+                                {
+                                    this.state.isLogin === true ? <input type="file" /> : ''
+                                }
                                     <i className="fa fa-upload"></i>
                                     <em>上传文档</em>
                                 </a>
@@ -66,7 +69,7 @@ class Search_head extends Component {
                                 <form action="">
                                     <div className="f-control _clearfix">
                                     {/* <Link to={{ pathname: '/wk/search' , state : { name: this.state.name  }}} className="search-btn" ><i className="fa fa-search"></i></Link> */}
-                                    <a href="javascript:void(0)" onClick={this.goSearch} className="search-btn"><i className="fa fa-search"></i></a>
+                                    <a href="javascript:;" onClick={this.goSearch} className="search-btn"><i className="fa fa-search"></i></a>
                                     <div className="search-ipt">
                                         <input type="text"  onChange={this.searchOnChange} onKeyDown={this.handleKeyEnter} placeholder="输入要搜索的关键字" />
                                         <i className="fa fa-times-circle" onClick={this.clearInputText}></i>
