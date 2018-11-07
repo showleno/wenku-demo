@@ -9,6 +9,7 @@ class Search_head extends Component {
             name: '',
             isLogin : store.getState().reducer.isLogin
         }
+        console.log( store.getState().reducer.isLogin, 'search')
     }
     goSearch = () =>  {
         let query = this.state.name;
@@ -43,7 +44,7 @@ class Search_head extends Component {
                             <div className="upload">
                                 <a href="/login">
                                 {
-                                    this.state.isLogin === true ? <input type="file" /> : ''
+                                    this.state.isLogin  ? <input type="file" /> : ''
                                 }
                                     <i className="fa fa-upload"></i>
                                     <em>上传文档</em>

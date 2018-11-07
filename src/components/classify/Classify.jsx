@@ -9,7 +9,7 @@ class Classify extends Component {
             isLogin : store.getState().reducer.isLogin
         }
         // 判断是否登录
-        console.log(store.getState().reducer.isLogin)
+        console.log(store.getState().reducer.isLogin, 'classify')
     }
     render () {
         return (
@@ -28,7 +28,7 @@ class Classify extends Component {
                         <li><a href="/"><i className="I_50 I_falv"></i><span>法律</span></a></li>
                     </ul>
                     {
-                        this.state.isLogin === true ? <div className="_use _clearfix">
+                        this.state.isLogin ? <div className="_use _clearfix">
                             <ul className="_user">
                             <li className="_wdsg"><a href="/"><strong>我的书柜</strong><span><i className="I_30 I_wdsg"></i>收藏 345 本</span></a></li>
                             <li className="_wddy"><a href="/"><strong>我的订阅</strong><span><i className="I_30 I_wddy"></i>已更新 25 篇</span></a></li>
