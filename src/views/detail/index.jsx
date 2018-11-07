@@ -39,6 +39,7 @@ export default class Detail extends Component {
 
                     </div>
                 </div>
+                
             </div>
         )
     }
